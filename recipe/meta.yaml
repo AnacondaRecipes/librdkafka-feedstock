@@ -12,9 +12,16 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 2
+  # np cyrus-sasl on s390x
+  skip: True  # [linux and s390x]
   run_exports:
     - {{ pin_subpackage("librdkafka", max_pin="x.x") }}
+  ignore_run_exports:  # [win]
+    - lz4-c            # [win]
+    - zlib             # [win]
+    - openssl          # [win]
+    - zstd             # [win]
 
 requirements:
   build:
@@ -23,6 +30,7 @@ requirements:
     - ninja  # [win]
     - cmake >=3.2.0  # [win]
     - make  # [unix]
+    - pkgconfig
 
   host:
     - zlib
