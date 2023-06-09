@@ -1,14 +1,13 @@
 {% set name = "librdkafka" %}
-{% set version = "1.6.0" %}
-{% set sha256 = "3130cbd391ef683dc9acf9f83fe82ff93b8730a1a34d0518e93c250929be9f6b" %}
+{% set version = "2.1.1" %}
+{% set sha256 = "7be1fc37ab10ebdc037d5c5a9b35b48931edafffae054b488faaff99e60e0108" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/edenhill/{{ name }}/archive/v{{ version }}.tar.gz
+  url: https://github.com/confluentinc/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
@@ -33,15 +32,14 @@ requirements:
     - pkgconfig
 
   host:
-    - zlib
-    - openssl
-    # the cyrus-sasl package v2.1.26 has an incomplete pkgconfig.
-    - cyrus-sasl >=2.1.27  # [not win]
-    - lz4-c
-    - zstd
+    - zlib {{ zlib }}
+    - openssl {{ openssl }}
+    - cyrus-sasl 2.1.28  # [not win]
+    - lz4-c 1.9.4
+    - zstd {{ zstd }}
   run:
     - zlib
-    - openssl
+    - openssl 3.*
     # cyrus-sasl is not used on windows, instead a native implementation is:
     # https://github.com/edenhill/librdkafka/issues/1381#issuecomment-323382697
     - cyrus-sasl  # [not win]
@@ -56,7 +54,7 @@ test:
     - if not exist %LIBRARY_LIB%\\rdkafka++.lib exit 1  # [win]
 
 about:
-  home: https://github.com/edenhill/librdkafka
+  home: https://github.com/confluentinc/librdkafka
   license: BSD-2-Clause
   license_family: BSD
   license_file: LICENSE
@@ -67,6 +65,8 @@ about:
     delivery reliability and high performance in mind, current figures exceed 1
     million msgs/second for the producer and 3 million msgs/second for the
     consumer.
+  doc_url: https://github.com/confluentinc/librdkafka#documentation
+  dev_url: https://github.com/confluentinc/librdkafka
 
 extra:
   recipe-maintainers:
