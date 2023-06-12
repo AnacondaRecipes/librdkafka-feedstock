@@ -16,11 +16,6 @@ build:
   skip: True  # [linux and s390x]
   run_exports:
     - {{ pin_subpackage("librdkafka", max_pin="x.x") }}
-  ignore_run_exports:  # [win]
-    - lz4-c            # [win]
-    - zlib             # [win]
-    - openssl          # [win]
-    - zstd             # [win]
 
 requirements:
   build:
