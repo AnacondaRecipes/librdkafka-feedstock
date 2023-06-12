@@ -1,3 +1,6 @@
+channels:
+  jcmorin-ana-org: librdkafka
+
 aggregate_branch: openssl3_builds
 
 build_parameters:
