@@ -28,7 +28,7 @@ requirements:
 
   host:
     - zlib {{ zlib }}
-    - openssl {{ openssl }}
+    - openssl 3.0.8
     - cyrus-sasl 2.1.28  # [not win]
     - lz4-c 1.9.4
     - zstd {{ zstd }}
