@@ -9,6 +9,7 @@ cmake ^
   -DCMAKE_BUILD_TYPE:String=Release ^
   -GNinja ^
   -DLZ4_LIBRARY=%LIBRARY_LIB%\liblz4.lib ^
+  -DRDKAFKA_BUILD_EXAMPLES=OFF ^
   ..
 
 if errorlevel 1 exit 1
