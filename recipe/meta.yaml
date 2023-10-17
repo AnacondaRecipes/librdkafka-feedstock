@@ -38,7 +38,7 @@ requirements:
 
   run:
     - zlib
-    - openssl 3.*
+    - openssl
     # cyrus-sasl is not used on windows, instead a native implementation is:
     # https://github.com/edenhill/librdkafka/issues/1381#issuecomment-323382697
     - cyrus-sasl  # [not win]
