@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   # np cyrus-sasl on s390x
   skip: True  # [linux and s390x]
   run_exports:
@@ -28,13 +28,17 @@ requirements:
 
   host:
     - zlib {{ zlib }}
-    - openssl 3.0.8
     - cyrus-sasl 2.1.28  # [not win]
     - lz4-c 1.9.4
     - zstd {{ zstd }}
+    #following does not work, see https://github.com/conda/conda-build/issues/5038
+    #    - openssl {{ openssl }}
+    - openssl 1.1.1 # [openssl_variant == "current"]
+    - openssl 3.0 # [openssl_variant == "legacy"]
+
   run:
     - zlib
-    - openssl 3.*
+    - openssl
     # cyrus-sasl is not used on windows, instead a native implementation is:
     # https://github.com/edenhill/librdkafka/issues/1381#issuecomment-323382697
     - cyrus-sasl  # [not win]
